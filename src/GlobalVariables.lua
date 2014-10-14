@@ -2,6 +2,12 @@
 Monster Actors Values：
 ]]--
 
+--Global values
+G = 
+{
+    winSize = cc.Director:getInstance():getWinSize()
+}
+
 --Monster Slime
 MonsterSlimeValues =
 {
@@ -26,4 +32,3 @@ MonsterPigletValues =
     {
         fileName = "model/piglet/piglet.c3b"
     }
-    

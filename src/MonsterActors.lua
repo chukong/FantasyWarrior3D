@@ -124,7 +124,6 @@ function MonsterPiglet:addSprite3D()
     self._sprite3d:setRotation(-90)
 end
 
-
 function MonsterPiglet:initActions()
 
 end
