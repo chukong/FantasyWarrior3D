@@ -267,6 +267,18 @@ local function gameController(dt)
     end
 end
 
+local function initUILayer()
+    uiLayer = require("BattleFieldUI").create()
+
+    uiLayer:setPositionZ(-cc.Director:getInstance():getZEye())
+    uiLayer:setScale(1)
+    uiLayer:ignoreAnchorPointForPosition(false)
+    uiLayer:setGlobalZOrder(999)
+    camera:addChild(uiLayer)
+    cclog("cc.Director:getInstance():getZEye() is %f",cc.Director:getInstance():getZEye())
+    --currentLayer:addChild(uiLayer)
+end
+
 local TestAIScene = class("TestAIScene",function()
     return cc.Scene:create()
 end)
@@ -280,6 +292,7 @@ function TestAIScene.create()
     createBackground()
     createRole()
     setCamera()
+    initUILayer()
     
     if warrior ~= nil then
         warrior._particle:setCamera(camera)
