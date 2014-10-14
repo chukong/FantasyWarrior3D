@@ -5,7 +5,8 @@ Monster Actors Values：
 --G values
 G =
 {
-    winSize = cc.Director:getInstance():getWinSize()
+    winSize = cc.Director:getInstance():getWinSize(),
+    bloodPercentDropSpeed = 2
 }
 
 --Monster Slime

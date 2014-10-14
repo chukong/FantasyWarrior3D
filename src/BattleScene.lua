@@ -4,6 +4,7 @@ require "Monster"
 require "Boss"
 require "Manager"
 require "Warrior"
+require "MessageDispatchCenter"
 
 local size = cc.Director:getInstance():getWinSize()
 local scheduler = cc.Director:getInstance():getScheduler()
@@ -12,6 +13,7 @@ local touchPos = nil
 local currentLayer = nil
 local heroOriginPositionX = -2900
 local currentStep = 1;
+local uiLayer = nil
 
 --hero ref
 local warrior
@@ -227,6 +229,7 @@ local function createEnmey(step)
 end
 
 local function createRole()
+
     warrior = addNewSprite(heroOriginPositionX, 0, EnumRaceType.DEBUG)
     addParticleToRole(warrior)    
     warrior:setState(EnumStateType.STAND)
@@ -259,12 +262,34 @@ local function setCamera()
     currentLayer:addChild(camera)
 end
 
+--dropValuePercent is the dropValue/bloodValue*100
+local function sendDropBlood(dropValuePercent, hero)
+    local function initBloodDrop(dropValuePercent, hero)
+        if uiLayer~=nil then
+            uiLayer:bloodDrop(dropValuePercent,hero)    
+        end
+    end
+
+    MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.BLOOD_DROP, initBloodDrop(dropValuePercent, hero))  
+end
+
+local function registerBloodDrop(struct)
+
+
+end
+
 local function gameController(dt)
     collisionDetect()
     findAllEnemy()
     moveCamera(dt)
     updateParticlePos()
-
+    
+--  A sample to drop blood    
+--    if uiLayer~=nil and warrior._blood>700 then
+--        sendDropBlood(300/1000*100, warrior)
+--        warrior._blood=warrior._blood-1
+--    end
+    
     local tempPos = camera:getPositionX()
     --cclog("%f", tempPos)
     if tempPos > -2500 and tempPos < -2400 then
@@ -286,7 +311,6 @@ local function initUILayer()
     camera:addChild(uiLayer)
 end
 
-
 local BattleScene = class("BattleScene",function()
     return cc.Scene:create()
 end)
@@ -301,6 +325,8 @@ function BattleScene.create()
     createRole()
     setCamera()
     initUILayer()
+            
+    MessageDispatchCenter:registerMessage(MessageDispatchCenter.MessageType.BLOOD_DROP,registerBloodDrop)
     
     if warrior ~= nil then
         warrior._particle:setCamera(camera)
