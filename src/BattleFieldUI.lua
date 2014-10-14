@@ -1,3 +1,6 @@
+require "GlobalVariables"
+require "Base3D"
+
 local BattlefieldUI = class("battlefieldUI",function() return cc.Layer:create() end)
 
 function BattlefieldUI.create()
@@ -9,6 +12,7 @@ function BattlefieldUI:ctor()
     self:avatarInit()
     self:bloodbarInit()
     self:touchButtonInit()
+
 end
 
 function BattlefieldUI:avatarInit()
@@ -63,21 +67,30 @@ function BattlefieldUI:touchButtonInit()
     self:addChild(self.SetBtn,3)
 end
 
-function BattlefieldUI:setDefenceBtnDisabled()
-    self.DefenceBtn:setBright(false)
-    self.DefenceBtn:setEnabled(false)
-end
+local scheduleID = nil
 
-function BattlefieldUI:setWarriorBlood(parameters)
-    self.WarriorBlood:setPercent(parameters)
-end
+function BattlefieldUI:bloodDrop(dropValuePercent,hero)
 
-function BattlefieldUI:setArcherBlood(parameters)
-    self.ArcherBlood:setPercent(parameters)
-end
+    if hero._racetype==EnumRaceType.WARRIOR then
+        self.WarriorBlood:setPercent(100-dropValuePercent)
+    end
 
-function BattlefieldUI:setMageBlood(parameters)
-    self.MageBlood:setPercent(parameters)
+    if hero._racetype==EnumRaceType.ARCHER then
+        self.ArcherBlood:setPercent(100-dropValuePercent)
+    end
+
+    if hero._racetype==EnumRaceType.SORCERESS then
+        self.MageBlood:setPercent(100-dropValuePercent)
+    end    
+--    local function update(dt)
+--        if self.WarriorBlood:getPercent()>(100-dropValuePercent) then
+--            self.WarriorBlood:setPercent(self.WarriorBlood:getPercent()-G.bloodPercentDropSpeed)
+--        elseif scheduleID ~= nil then
+--            cc.Director:getInstance():getScheduler():unscheduleScriptEntry(scheduleID)
+--        end
+--    end
+--    
+--    scheduleID = cc.Director:getInstance():getScheduler():scheduleScriptFunc(update,0,false)
 end
 
 return BattlefieldUI
