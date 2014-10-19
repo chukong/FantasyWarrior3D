@@ -1,6 +1,6 @@
 require "Cocos2d"
 require "Cocos2dConstants"
-require "Base3D"
+require "Actor"
 
 --tag 3hero:1~3
 --tag bag:10 weapon:11 armour:12

@@ -1,5 +1,5 @@
 require "Helper"
-require "Base3D"
+require "Actor"
 require "Monster"
 require "Boss"
 require "Manager"
@@ -7,6 +7,7 @@ require "Warrior"
 require "Mage"
 require "MessageDispatchCenter"
 require "AttackCommand"
+require "knight"
 
 local size = cc.Director:getInstance():getWinSize()
 local scheduler = cc.Director:getInstance():getScheduler()
@@ -245,6 +246,10 @@ local function createRole()
    addParticleToRole(hero)
    hero:setState(EnumStateType.WALK)
    List.pushlast(HeroManager, hero)
+   
+   local test = Knight:create()
+   test:setPosition(heroOriginPositionX+500, 300)
+    currentLayer:addChild(test)
 
     addNewSprite(size.width/2-1900, size.height/2-200, EnumRaceType.MONSTER, false)
     addNewSprite(size.width/2-2000, size.height/2-200, EnumRaceType.MONSTER, false)

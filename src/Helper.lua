@@ -47,6 +47,14 @@ function createAnimationStruct(var1, var2, var3)
     local timerange = {begin = var1, ended = var2, speed=var3}
     return timerange
 end
+function createAnimation(file, begin, finish, speed)
+--TODO: we don't need to create the same Animation3D all the time
+    local animation3d = cc.Animation3D:create(file)
+    local animate3d = cc.Animate3D:create(animation3d, begin/30,(finish-begin)/30)
+    animate3d:setSpeed(speed)
+    animate3d:retain()
+    return animate3d
+end
 
 --createKnockedMessageStruct
 function createKnockedMsgStruct(object)
@@ -141,4 +149,19 @@ function List.remove(list, index)
     end
     
     list.last = list.last -1
+end
+
+
+
+
+function delayExecute(target, func, delay)
+    local wait = cc.DelayTime:create(delay)
+    target:runAction(cc.Sequence:create(wait, cc.CallFunc:create(func)))
+end
+
+function DEGREES_TO_RADIANS(__ANGLE__) 
+    return __ANGLE__ * 0.01745329252
+end
+function RADIANS_TO_DEGREES(__ANGLE__)
+    return __ANGLE__ * 57.29577951
 end

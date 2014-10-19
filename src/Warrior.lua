@@ -4,7 +4,7 @@ require "Helper"
 require "AttackCommand"
 
 Warrior = class("Warrior", function()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 local size = cc.Director:getInstance():getWinSize()
@@ -23,32 +23,18 @@ function Warrior.create()
     local mainloop_schedulerid
 
     local hero = Warrior.new()
-    hero:AddSprite3D()
+    hero:init3D()
 
     -- base
     hero:setRaceType(EnumRaceType.WARRIOR)
     hero:setState(EnumStateType.STAND)
     hero:initActions()
-
+    
     local function MainLoop(dt)
+        
 --     getDebugStateType(hero)
         if EnumStateType.WALK == hero._statetype then
-            local targetPos = {x=3000, y=0}
-            if hero._target ~= nil  then
-                local miniDistance = hero._attackRadius + hero._target._radius
-                local p1 = getPosTable(hero)
-                local p2 = getPosTable(hero._target)
-                local distance = cc.pGetDistance(p1, p2)
-                local angle = cc.pToAngleSelf(cc.pSub(p1, p2))
-                p2 = cc.pRotateByAngle(cc.pAdd(cc.p(-miniDistance/2,0),p2), p2, angle)       
-                if miniDistance < distance then
-                    hero:setPosition(getNextStepPos(p1, p2, hero._speed, dt))
-                else
-                    hero:setPosition(getNextStepPos(p1, targetPos, hero._speed, dt))
-                end
-            else
-                hero:setPosition(getNextStepPos(getPosTable(hero), targetPos, hero._speed, dt))            
-            end            
+            hero:walkUpdate(dt)
         elseif EnumStateType.STAND == hero._statetype then
             hero._statetype = EnumStateType.STANDING
             hero._sprite3d:runAction(hero._action.stand:clone())
@@ -57,7 +43,7 @@ function Warrior.create()
             hero._statetype = EnumStateType.NORMALATTACKING
             local function sendKnockedMsg()
                 --MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.KNOCKED, createKnockedMsgStruct(hero))
-                cclog("warrior send msg....")
+                --cclog("warrior send msg....")
                 AttackCommand.create(hero)
             end
             local function attackdone()
@@ -69,7 +55,7 @@ function Warrior.create()
             hero._statetype = EnumStateType.SPECIALATTACKING
             local function sendKnockedMsg()
                 --MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.KNOCKEDAOE, createKnockedMsgStruct(hero))
-                cclog("warrior send msg....")
+                --cclog("warrior send msg....")
                 AttackCommand.create(hero)
             end
             local function attackdone()
@@ -81,11 +67,11 @@ function Warrior.create()
         elseif EnumStateType.KNOCKED == hero._statetype then
             --self._knockedMsgStruct.attacker._attack
             local damage = 200
-            hero._blood = hero._blood - damage
-            if hero._blood <0 then
-                hero._blood = 0
+            hero._hp = hero._hp - damage
+            if hero._hp <0 then
+                hero._hp = 0
             end
-            if hero._blood == 0 then
+            if hero._hp == 0 then
                 hero._isalive = false
                 hero:setState(EnumStateType.DEAD)
             else
@@ -110,13 +96,13 @@ function Warrior.create()
             hero._statetype = EnumStateType.DYING
             local deaddone = function ()
                 hero:setState(EnumStateType.NULL)
-                local function disappear()
-                    hero._particle:removeFromParent()
-                    hero._particle = nil
-                    scheduler:unscheduleScriptEntry(mainloop_schedulerid)
-                    hero:removeFromParent()
-                end
-                hero:runAction(cc.Sequence:create(cc.MoveBy:create(1.0,cc.V3(0,0,-50)),cc.CallFunc:create(disappear)))
+--                local function disappear()
+--                    hero._particle:removeFromParent()
+--                    hero._particle = nil
+--                    scheduler:unscheduleScriptEntry(mainloop_schedulerid)
+--                    hero:removeFromParent()
+--                end
+                hero:runAction(cc.Sequence:create(cc.MoveBy:create(1.0,cc.V3(0,0,-50)),cc.RemoveSelf:create()))
             end
             hero._sprite3d:runAction(cc.Sequence:create(hero._action.dead:clone(), cc.CallFunc:create(deaddone)))
         end
@@ -150,7 +136,7 @@ function Warrior.create()
 end
 
 
-function Warrior:AddSprite3D()
+function Warrior:init3D()
     self._sprite3d = cc.EffectSprite3D:create(filename)
     self._sprite3d:setScale(25)
     self._sprite3d:addEffect(cc.V3(0,0,0),0.01, -1)
@@ -158,9 +144,10 @@ function Warrior:AddSprite3D()
     self._sprite3d:setRotation3D({x = 90, y = 0, z = 0})        
     self._sprite3d:setRotation(-90)
 
-    cclog(self._sprite3d:getMeshNum())
+    --cclog(self._sprite3d:getMeshNum())
 --    self:setDefaultEqt()
 end
+
 
 local function createAnimation(animationStruct, isloop)
     local animation3d = cc.Animation3D:create(filename)
@@ -173,7 +160,18 @@ local function createAnimation(animationStruct, isloop)
     end
 end
 
+
 function Warrior:initActions()
+    local function createAnimation(animationStruct, isloop )
+        local animation3d = cc.Animation3D:create(filename)
+        local animate3d = cc.Animate3D:create(animation3d, animationStruct.begin/30,(animationStruct.ended-animationStruct.begin)/30)
+        animate3d:setSpeed(animationStruct.speed)
+        if isloop then
+            return cc.RepeatForever:create(animate3d)
+        else
+            return animate3d
+        end
+    end
     local stand = createAnimationStruct(267,283,0.7)
     local walk = createAnimationStruct(227,246,0.7)
     local attack1 = createAnimationStruct(103,129,0.7)
@@ -236,7 +234,7 @@ function Warrior:setState(type)
         if EnumStateType.KNOCKED == self._statetype then return end
         math.randomseed(os.time()) 
         local random_special = math.random()
-        cclog(random_special)
+        --cclog(random_special)
         if random_special < WarriorProperty.special_attack_chance then
             self._statetype = EnumStateType.SPECIALATTACK
         else    
@@ -258,6 +256,26 @@ function Warrior:setState(type)
         self._statetype = type
     end
 end
+
+
+function Warrior:walkUpdate(dt)
+    if self._target ~= nil  then
+        local miniDistance = self._attackRadius + self._target._radius
+        local p1 = getPosTable(self)
+        local p2 = getPosTable(self._target)
+        local distance = cc.pGetDistance(p1, p2)
+        local angle = cc.pToAngleSelf(cc.pSub(p1, p2))
+        p2 = cc.pRotateByAngle(cc.pAdd(cc.p(-miniDistance/2,0),p2), p2, angle)       
+        self:setPosition(getNextStepPos(p1, p2, self._speed, dt))
+    else
+        --our hero doesn't have a target, lets move right
+        local curx,cury = self:getPosition()
+        self:setPosition(curx+self._speed*dt, cury)           
+    end            
+end
+
+
+
 
 -- set default equipments
 function Warrior:setDefaultEqt()
@@ -297,6 +315,8 @@ function Warrior:switchWeapon()
         girl_shoe:setVisible(true)
     end
 end
+
+
 
 --switch armour
 function Warrior:switchArmour()

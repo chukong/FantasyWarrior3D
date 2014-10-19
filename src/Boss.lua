@@ -2,7 +2,7 @@ require "AttackCommand"
 require "MessageDispatchCenter"
 
 Boss = class("Boss", function()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 local size = cc.Director:getInstance():getWinSize()
@@ -61,18 +61,18 @@ function Boss.create()
         elseif EnumStateType.KNOCKED == boss._statetype then
             --self._knockedMsgStruct.attacker._attack
             local damage = 800
-            boss._blood = boss._blood - damage
-            if boss._blood <0 then
-                boss._blood = 0
+            boss._hp = boss._hp - damage
+            if boss._hp <0 then
+                boss._hp = 0
             end
-            if boss._blood == 0 then
+            if boss._hp == 0 then
                 boss._isalive = false
                 boss:setState(EnumStateType.DEAD)
             else
-                cclog("boss knocked....")
+                --cclog("boss knocked....")
                 boss._statetype = EnumStateType.KNOCKING
                 local function dropblood()
-                    cclog("boss dropblood")
+                    --cclog("boss dropblood")
                 end
                 local function knockdone()
                     boss:setState(EnumStateType.STAND)

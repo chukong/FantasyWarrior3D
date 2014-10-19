@@ -1,5 +1,5 @@
 require "GlobalVariables"
-require "Base3D"
+require "Actor"
 
 local BattlefieldUI = class("battlefieldUI",function() return cc.Layer:create() end)
 

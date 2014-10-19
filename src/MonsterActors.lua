@@ -1,7 +1,7 @@
 require "GlobalVariables"
 
 MonsterSlime = class("MonsterSlime",function ()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 function MonsterSlime:ctor()
@@ -33,7 +33,7 @@ function MonsterSlime:initActions()
 end
 
 MonsterDragon = class("MonsterDragon",function ()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 function MonsterDragon:ctor()
@@ -65,7 +65,7 @@ function MonsterDragon:initActions()
 end
 
 MonsterRat = class("MonsterRat",function ()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 function MonsterRat:ctor()
@@ -98,7 +98,7 @@ function MonsterRat:initActions()
 end
 
 MonsterPiglet = class("MonsterPiglet",function ()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 function MonsterPiglet:ctor()

@@ -2,7 +2,7 @@ require "AttackCommand"
 require "GlobalVariables"
 require "MessageDispatchCenter"
 Mage = class("Mage", function()
-    return require "Base3D".create()
+    return require "Actor".create()
 end)
 
 local size = cc.Director:getInstance():getWinSize()
@@ -58,7 +58,7 @@ function Mage.create()
             local function sendKnockedMsg()
                 AttackCommand.create(hero)
                 --MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.KNOCKED, createKnockedMsgStruct(hero))
-                cclog("Mage send msg....")
+                --cclog("Mage send msg....")
             end
             local function attackdone()
                 hero:setState(EnumStateType.STAND)
@@ -70,7 +70,7 @@ function Mage.create()
             local function sendKnockedMsg()
                 AttackCommand.create(hero)
                 --MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.KNOCKEDAOE, createKnockedMsgStruct(hero))
-                cclog("Mage send msg....")
+                --cclog("Mage send msg....")
             end
             local function attackdone()
                 hero:setState(EnumStateType.STAND)
@@ -81,11 +81,11 @@ function Mage.create()
         elseif EnumStateType.KNOCKED == hero._statetype then
             --self._knockedMsgStruct.attacker._attack
             local damage = 200
-            hero._blood = hero._blood - damage
-            if hero._blood <0 then
-                hero._blood = 0
+            hero._hp = hero._hp - damage
+            if hero._hp <0 then
+                hero._hp = 0
             end
-            if hero._blood == 0 then
+            if hero._hp == 0 then
                 hero._isalive = false
                 hero:setState(EnumStateType.DEAD)
             else
@@ -234,7 +234,7 @@ function Mage:setState(type)
         if EnumStateType.KNOCKED == self._statetype then return end
         math.randomseed(os.time()) 
         local random_special = math.random()
-        cclog(random_special)
+        --cclog(random_special)
         if random_special < WarriorProperty.special_attack_chance then
             self._statetype = EnumStateType.SPECIALATTACK
         else    
