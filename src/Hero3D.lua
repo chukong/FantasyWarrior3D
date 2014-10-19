@@ -62,11 +62,11 @@ function Hero3D:AddSprite3D(type)
     
     local filename;
     if type == EnumRaceType.WARRIOR then --warrior
-        filename = "model/warrior1/warrior.c3b"
+        filename = "model/warrior/warrior.c3b"
     elseif type == EnumRaceType.ARCHER then --archer
         filename = "Sprite3DTest/ReskinGirl.c3b"
     elseif type == EnumRaceType.WAGE then --wage
-        filename = "Sprite3DTest1/ReskinGirl.c3b"
+        filename = "Sprite3DTest/ReskinGirl.c3b"
     else
         filename = "Sprite3DTest/orc.c3b" 
     end
