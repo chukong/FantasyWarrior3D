@@ -3,7 +3,7 @@ require "MessageDispatchCenter"
 require "Helper"
 require "AttackCommand"
 
-local file = "model/rat/rat.c3b"
+local file = "model/rat/laoshu_ani_v03.c3b"
 
 Rat = class("Rat", function()
     return require "Actor".create()
@@ -104,12 +104,19 @@ end
 function Rat:init3D()
     self:initShadow()
     self._sprite3d = cc.EffectSprite3D:create(file)
-    self._sprite3d:setTexture("model/rat/shenti.jpg")
+--    self._sprite3d:getMeshByName("laoshu_tou"):setTexture("model/rat/laoshu_tex_tou.jpg")
+--    self._sprite3d:getMeshByName("laoshu_wuqi"):setTexture("model/rat/shenti.png")
+--    self._sprite3d:getMeshByName("laoshu_shenti"):setTexture("model/rat/shenti.png")
     self._sprite3d:setScale(10)
-    self._sprite3d:addEffect(cc.V3(0,0,0),0.005, -1)
+    self._sprite3d:addEffect(cc.V3(0,0,0),0.05, -1)
     self:addChild(self._sprite3d)
     self._sprite3d:setRotation3D({x = 90, y = 0, z = 0})        
     self._sprite3d:setRotation(-90)
+
+    local mesh = self._sprite3d:getMesh()
+    for k,v in pairs(mesh) do
+        print(v:getName())
+    end
 end
 
 -- init Rat animations=============================

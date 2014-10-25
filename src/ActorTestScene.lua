@@ -5,6 +5,9 @@ require "Knight"
 require "Slime"
 require "Archer"
 require "Mage"
+require "Boss"
+require "Rat"
+require "Dragon"
 
 --declare a class extends scene
 local ActorTestScene = class("ActorTestScene",function()
@@ -26,10 +29,10 @@ function ActorTestScene.create()
     --add layer
 
 
-    local act = Mage:create()
+    local act = Boss:create()
     
-    act:setAIEnabled(false)
-    act:setScale(2)
+--    act:setAIEnabled(false)
+    act:setScale(1)
     
     scene.lay:addChild(act)
     scene:enableTouch()

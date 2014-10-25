@@ -7,7 +7,7 @@ end)
 
 local size = cc.Director:getInstance():getWinSize()
 local scheduler = cc.Director:getInstance():getScheduler()
-local filename = "model/warrior/warrior.c3b"
+local filename = "model/boss/yaonv_Ani_all_v007.c3b"
 
 function Boss:ctor()
     self._useWeaponId = 0
@@ -119,10 +119,12 @@ end
 
 function Boss:AddSprite3D()
     self._sprite3d = cc.EffectSprite3D:create(filename)
-    self._sprite3d:addEffect(cc.V3(0,0,0),0.01, -1)
+    self._sprite3d:setScale(20)
+    self._sprite3d:addEffect(cc.V3(0,0,0),-0.01, -1)
     self:addChild(self._sprite3d)
     self._sprite3d:setRotation3D({x = 90, y = 0, z = 0})        
     self._sprite3d:setRotation(-90)
+    
 
     --    self:setDefaultEqt()
 end

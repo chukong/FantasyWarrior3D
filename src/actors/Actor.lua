@@ -25,13 +25,12 @@ function Actor:ctor()
 end
 
 function Actor:addEffect(effect)
-local yOffset = 100
+    effect:setPosition(cc.pAdd(getPosTable(self),getPosTable(effect)))
     if self._racetype ~= EnumRaceType.MONSTER then
-        effect:setPosition3D({x=self:getPositionX(),y=self:getPositionY()+yOffset,z=self:getPositionZ()+self._heroHeight})
+        effect:setPositionZ(self:getPositionZ()+self._heroHeight)
     else
-        effect:setPosition3D({x=self:getPositionX(),y=self:getPositionY()+yOffset,z=self:getPositionZ()+self._monsterHeight})
+        effect:setPositionZ(self:getPositionZ()+self._monsterHeight)
     end
-    --effect:setGlobalZOrder(-FXZorder)
     currentLayer:addChild(effect)
 end
 
@@ -142,13 +141,7 @@ function Actor:hurt(collider)
         
         --three param judge if crit
         local blood = self._hpCounter:showBloodLossNum(damage,self,false)
-        if self._racetype == EnumRaceType.MONSTER then
-            blood:setPositionZ(self._monsterHeight)
-        else
-            blood:setPositionZ(self._heroHeight)
-        end
-        blood:setGlobalZOrder(100)
-        self:addChild(blood)
+        self:addEffect(blood)
 
         local loseBlood = {_name = self._name, _racetype = self._racetype, _maxhp= self._maxhp, _hp = self._hp, _bloodBar=self._bloodBar, _bloodBarClone=self._bloodBarClone,_avatar =self._avatar}
         MessageDispatchCenter:dispatchMessage(MessageDispatchCenter.MessageType.BLOOD_DROP, loseBlood)

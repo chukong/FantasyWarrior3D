@@ -15,7 +15,7 @@ end)
 
 local sortorder = {1,2,3} --hero's tag
 local rtt = {{x=-90,y=-60,z=0},{x=-90,y=-70,z=0},{x=-90,y=-60,z=0}}
-local pos = {{x=160,y=160,z=-180},{x=380,y=120,z=-40},{x=530,y=160,z=-180}} --heroes' pos
+local pos = {{x=160,y=200,z=-180},{x=380,y=160,z=-40},{x=530,y=200,z=-180}} --heroes' pos
 local weapon_item_pos = {x=832,y=280}
 local armour_item_pos = {x=916,y=280}
 local helmet_item_pos = {x=1000,y=280}
@@ -151,7 +151,7 @@ function ChooseRoleScene:addHeros()
 end
 
 function ChooseRoleScene:addBk()
-	local bk = cc.Sprite:create("chooseRole/cr_bk.jpg")
+	local bk = cc.Sprite:create("chooseRole/cr_bk.png")
     bk:setAnchorPoint(0.5,0.5)
     bk:setPosition(self.origin.x + self.visibleSize.width/2, self.origin.y + self.visibleSize.height/2)
     self.layer:addChild(bk)
