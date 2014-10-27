@@ -292,6 +292,7 @@ void Effect3DOutline::draw(const Mat4 &transform)
         glEnable(GL_CULL_FACE);
         glCullFace(GL_FRONT);
         glEnable(GL_DEPTH_TEST);
+        glDepthMask(GL_FALSE);
         // auto mesh = _childMesh;
         glBindBuffer(GL_ARRAY_BUFFER, _childMesh->getVertexBuffer());
         
@@ -314,13 +315,22 @@ void Effect3DOutline::draw(const Mat4 &transform)
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         //glDisable(GL_DEPTH_TEST);
         glCullFace(GL_BACK);
+        glDepthMask(GL_TRUE);
         //glDisable(GL_CULL_FACE);
     }
 }
 
 void EffectSprite3D::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &transform, uint32_t flags)
 {
-    
+    for(auto &effect : _effects)
+    {
+        if(std::get<0>(effect) >=0)
+            break;
+        CustomCommand &cc = std::get<2>(effect);
+        cc.func = CC_CALLBACK_0(Effect3D::draw,std::get<1>(effect),transform);
+        renderer->addCommand(&cc);
+        
+    }
     
     if(!_defaultEffect)
     {
@@ -331,14 +341,5 @@ void EffectSprite3D::draw(cocos2d::Renderer *renderer, const cocos2d::Mat4 &tran
         _command.init(_globalZOrder);
         _command.func = CC_CALLBACK_0(Effect3D::draw, _defaultEffect, transform);
         renderer->addCommand(&_command);
-    }
-    for(auto &effect : _effects)
-    {
-        if(std::get<0>(effect) >=0)
-            break;
-        CustomCommand &cc = std::get<2>(effect);
-        cc.func = CC_CALLBACK_0(Effect3D::draw,std::get<1>(effect),transform);
-        renderer->addCommand(&cc);
-        
     }
 }
