@@ -11,6 +11,7 @@
 #include "3d/lua_cocos2dx_3d_manual.h"
 #include "audioengine/lua_cocos2dx_audioengine_manual.h"
 #include "lua_cocos2dx_custom.hpp"
+#include "lua_cocos2dx_audioengine_auto.hpp"
 
 int lua_module_register(lua_State* L)
 {
@@ -25,10 +26,8 @@ int lua_module_register(lua_State* L)
     register_cocos3d_module(L);
     lua_getglobal(L, "_G");
     register_all_cocos2dx_custom(L);
+    register_all_cocos2dx_audioengine(L);
     lua_pop(L, 1);
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC
-    register_audioengine_module(L);
-#endif
     return 1;
 }
 

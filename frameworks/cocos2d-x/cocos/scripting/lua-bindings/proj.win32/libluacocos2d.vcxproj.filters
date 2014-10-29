@@ -70,6 +70,9 @@
     <Filter Include="luasocket">
       <UniqueIdentifier>{617e3909-01ff-4c11-bae5-790787963c34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="custom">
+      <UniqueIdentifier>{8966b151-5125-4a0a-bd9b-ca10aae0902d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\auto\lua_cocos2dx_auto.cpp">
@@ -245,6 +248,18 @@
     </ClCompile>
     <ClCompile Include="..\manual\cocostudio\CustomGUIReader.cpp">
       <Filter>manual\cocostudio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_audioengine_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_controller_auto.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\auto\lua_cocos2dx_custom.cpp">
+      <Filter>auto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\custom\EffectSprite.cpp">
+      <Filter>custom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +442,18 @@
     </ClInclude>
     <ClInclude Include="..\manual\cocostudio\CustomGUIReader.h">
       <Filter>manual\cocostudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_audioengine_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_controller_auto.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\auto\lua_cocos2dx_custom.hpp">
+      <Filter>auto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\custom\EffectSprite.h">
+      <Filter>custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

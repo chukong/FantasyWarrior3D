@@ -214,6 +214,9 @@
     <Filter Include="audioengine">
       <UniqueIdentifier>{e916e2b4-0a6e-4d25-8b36-66fa03719f48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="custom">
+      <UniqueIdentifier>{bbc34d1b-2f42-4f7e-b872-63421c2c3044}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\physics\CCPhysicsBody.cpp">
@@ -1191,6 +1194,36 @@
     </ClCompile>
     <ClCompile Include="..\audio\win32\AudioPlayer.cpp">
       <Filter>audioengine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\BillBoardLable.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\BillboardParticleSystem.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\CCSequence3D.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\DrawNode3D.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\EffectSprite.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\EffectSprite3D.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\GreyShader.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\JumpBy3D.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\JumpTo3D.cpp">
+      <Filter>custom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\custom\Water.cpp">
+      <Filter>custom</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2343,6 +2376,36 @@
     </ClInclude>
     <ClInclude Include="..\audio\win32\AudioPlayer.h">
       <Filter>audioengine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\BillBoardLable.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\BillboardParticleSystem.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\CCSequence3D.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\DrawNode3D.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\EffectSprite.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\EffectSprite3D.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\GreyShader.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\JumpBy3D.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\JumpTo3D.h">
+      <Filter>custom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\custom\Water.h">
+      <Filter>custom</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
