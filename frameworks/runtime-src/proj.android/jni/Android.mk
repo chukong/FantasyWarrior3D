@@ -40,6 +40,10 @@ $(LOCAL_PATH)/../../../cocos2d-x/external
 
 LOCAL_STATIC_LIBRARIES := cocos2d_lua_static
 
+$(call import-add-path,$(LOCAL_PATH)/../../../cocos2d-x/)
+$(call import-add-path,$(LOCAL_PATH)/../../../cocos2d-x/cocos/)
+$(call import-add-path,$(LOCAL_PATH)/../../../cocos2d-x/external/)
+
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,scripting/lua-bindings/proj.android)
