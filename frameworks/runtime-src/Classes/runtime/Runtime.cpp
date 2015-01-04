@@ -1086,9 +1086,10 @@ int lua_cocos2dx_runtime_addSearchPath(lua_State* tolua_S)
         if (!FileUtils::getInstance()->isAbsolutePath(originPath))
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
             cobj->addSearchPath(g_projectPath + originPath);
-#endif
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#elif(CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             cobj->addSearchPath(originPath);
+#else
+            CCASSERT(false, "[lua_cocos2dx_runtime_addSearchPath] Unsupported platform!");
 #endif
         return 0;
     }

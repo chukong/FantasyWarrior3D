@@ -90,3 +90,4 @@ frameworks/runtime-src/proj.android/project.properties
 frameworks/cocos2d-x/cocos/platform/android/java/project.properties
 frameworks/cocos2d-x/cocos/scripting/lua-bindings/proj.ios_mac/build
 frameworks/runtime-src/proj.ios_mac/build
+.gitignore
