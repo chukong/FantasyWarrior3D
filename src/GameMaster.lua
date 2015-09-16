@@ -11,7 +11,7 @@ require "Archer"
 --require "Boss"
 
 local gloableZOrder = 1
-local monsterCount = {dragon=1,slime=7,piglet=2,rat = 0} --rat count must be 0.
+local monsterCount = {dragon=1,slime=10,piglet=0,rat = 0} --rat count must be 0.
 local EXIST_MIN_MONSTER = 4
 local scheduleid
 local stage = 0
