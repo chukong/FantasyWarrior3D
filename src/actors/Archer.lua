@@ -118,10 +118,11 @@ function Archer:init3D()
     self:initPuff()
     self._sprite3d = cc.EffectSprite3D:create(file)
     self._sprite3d:setScale(1.6)
-    self._sprite3d:addEffect(cc.V3(0,0,0),CelLine, -1)
+    --self._sprite3d:addEffect(cc.V3(0,0,0),CelLine, -1)
     self:addChild(self._sprite3d)
     self._sprite3d:setRotation3D({x = 90, y = 0, z = 0})        
     self._sprite3d:setRotation(-90)
+    self._sprite3d:setOpacity(255)
     self:setDefaultEqt()
 end
 
