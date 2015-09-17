@@ -122,6 +122,7 @@ function Archer:init3D()
     self:addChild(self._sprite3d)
     self._sprite3d:setRotation3D({x = 90, y = 0, z = 0})        
     self._sprite3d:setRotation(-90)
+    self._sprite3d:setOpacity(255)
     self:setDefaultEqt()
 end
 
