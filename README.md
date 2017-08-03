@@ -67,3 +67,12 @@ Path: `FantasyWarrior3D/frameworks/runtime-src/proj.android`.
 * Game Logic: Gao Huang
 * Game UI & Sound Man: Rao Zijian
 * 3D technical support: Liu Liang, Hou Yingtao, Lv long, Nite, etc
+
+##Screenshots
+![Screen shot 1](http://www.raydelto.org/fantasy_warrior/1.png "Screen Shot 1")
+![Screen shot 2](http://www.raydelto.org/fantasy_warrior/2.png "Screen Shot 2")
+![Screen shot 3](http://www.raydelto.org/fantasy_warrior/3.png "Screen Shot 3")
+![Screen shot 4](http://www.raydelto.org/fantasy_warrior/4.png "Screen Shot 4")
+
+##Builds
+You can download the **Android APK build** from the following link: http://www.raydelto.org/FantasyWarrior3D.apk
