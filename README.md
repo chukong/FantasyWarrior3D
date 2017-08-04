@@ -18,7 +18,7 @@ BGMs are copyrighted by Matthew Pablo, and licensed under CC-BY 3.0
 
 You may not use any art including 2d and 3d from this project for commercial purpose
 
-##Git user attention
+## Git user attention
 
 1.Clone the repo from Github
 
@@ -46,24 +46,30 @@ $ python download-deps.py
 ```
 
 
-##Platform support
-This projetc supports 3 platforms: win32, ios_mac and Android.
+## Platform support
+This project supports 3 platforms: win32, ios_mac and Android.
 
-###ios_mac runtime
+### ios_mac runtime
 Path:
 `FantasyWarrior3D/frameworks/runtime-src/proj.ios_mac/FantasyWarrior3D.xcodeproj`.
 
-###win32 runtime
+### win32 runtime
 Path: `FantasyWarrior3D/frameworks/runtime-src/proj.win32/FantasyWarrior3D.sln`.
 >Requires Visual Studio 2012 and above.
 
-###android runtime
+### android runtime
 Path: `FantasyWarrior3D/frameworks/runtime-src/proj.android`.
 
-##Credits
+## Credits
 * Game Effects: Wu Hao
 * Game Logic: Fu Sijie
 * Game Logic: Li Jun
 * Game Logic: Gao Huang
 * Game UI & Sound Man: Rao Zijian
 * 3D technical support: Liu Liang, Hou Yingtao, Lv long, Nite, etc
+
+## Screenshots
+![Screen shot 1](screenshots/1.png "Screen Shot 1")
+![Screen shot 2](screenshots/2.png "Screen Shot 2")
+![Screen shot 3](screenshots/3.png "Screen Shot 3")
+![Screen shot 4](screenshots/4.png "Screen Shot 4")
