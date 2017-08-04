@@ -47,7 +47,7 @@ $ python download-deps.py
 
 
 ## Platform support
-This projetc supports 3 platforms: win32, ios_mac and Android.
+This project supports 3 platforms: win32, ios_mac and Android.
 
 ### ios_mac runtime
 Path:
