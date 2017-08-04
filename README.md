@@ -73,6 +73,3 @@ Path: `FantasyWarrior3D/frameworks/runtime-src/proj.android`.
 ![Screen shot 2](http://www.raydelto.org/fantasy_warrior/2.png "Screen Shot 2")
 ![Screen shot 3](http://www.raydelto.org/fantasy_warrior/3.png "Screen Shot 3")
 ![Screen shot 4](http://www.raydelto.org/fantasy_warrior/4.png "Screen Shot 4")
-
-##Builds
-You can download the **Android APK build** from the following link: http://www.raydelto.org/FantasyWarrior3D.apk
