@@ -1160,7 +1160,7 @@ void BillboardParticleSystem::setTotalParticles(int tp)
     if( tp > _allocatedParticles )
     {
         // Allocate new memory
-        size_t particlesSize = tp * sizeof(tParticle);
+        size_t particlesSize = tp * sizeof(sBillboardParticle);
         size_t quadsSize = sizeof(_quads[0]) * tp * 1;
         size_t indicesSize = sizeof(_indices[0]) * tp * 6 * 1;
         
