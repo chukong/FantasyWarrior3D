@@ -271,9 +271,9 @@ end
 function ChooseRoleScene:rotate3Heroes(isRight)
     --stop hero rotate
     if isRight then
-        self.layer:getChildByTag(sortorder[2]):runAction(cc.RotateTo:create(0.1,rtt[3]))
+        self.layer:getChildByTag(sortorder[2]):runAction(cc.RotateTo:create(0.1,rtt[3].z))
     else
-        self.layer:getChildByTag(sortorder[2]):runAction(cc.RotateTo:create(0.1,rtt[1]))
+        self.layer:getChildByTag(sortorder[2]):runAction(cc.RotateTo:create(0.1,rtt[1].z))
     end
 
     local rotatetime = 0.6

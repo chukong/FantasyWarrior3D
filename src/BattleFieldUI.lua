@@ -125,7 +125,7 @@ function BattlefieldUI:angrybarInit()
     local fullAngerStarOffset=70
     local yellow = cc.c3b(255,255,0)
     local grey = cc.c3b(113,103,76)
-    local action = cc.RepeatForever:create(cc.RotateBy:create(1,cc.V3(0,0,360)))
+    local action = cc.RepeatForever:create(cc.RotateBy:create(1,0,360))
 
     self.KnightAngry = cc.ProgressTimer:create(cc.Sprite:createWithSpriteFrameName("UI-1136-640_36_clone.png"))
     self.KnightAngry:setColor(yellow)
