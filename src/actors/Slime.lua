@@ -121,12 +121,12 @@ do
     idle:retain()
     local attack1 = cc.Spawn:create(
             cc.MoveBy:create(dur/2, cc.V3(0,0,20)),
-            cc.RotateBy:create(dur/2, cc.V3(70,0,0)),
+            cc.RotateBy:create(dur/2,70),
             cc.EaseBounceOut:create(cc.MoveTo:create(dur/2, cc.p(40, 0)))
         )
     local attack2 = cc.Spawn:create(
             cc.MoveTo:create(dur, cc.V3(0,0,0)),
-                cc.RotateBy:create(dur*3/4, cc.V3(-70,0,0)),
+                cc.RotateBy:create(dur*3/4,-70),
                 cc.EaseBackOut:create(cc.MoveTo:create(dur, cc.p(0,0)))
         )
     attack1:retain()
@@ -136,12 +136,12 @@ do
             cc.JumpBy3D:create(dur/2, cc.V3(0,0,0), 30, 1),
             cc.ScaleBy:create(dur, 2, 2, 0.1)
         ),
-        cc.RotateBy:create(dur, cc.V3(-90,0,0))
+        cc.RotateBy:create(dur,-90)
     )
     die:retain()
     local knock = cc.Sequence:create(
-        cc.EaseBackInOut:create(cc.RotateBy:create(dur/3, cc.V3(-60,0,0))),
-        cc.RotateBy:create(dur/2, cc.V3(60,0,0))
+        cc.EaseBackInOut:create(cc.RotateBy:create(dur/3,-60)),
+        cc.RotateBy:create(dur/2,60)
     )
     knock:retain()
     Slime._action = {

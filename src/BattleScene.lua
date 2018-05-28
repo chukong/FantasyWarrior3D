@@ -90,7 +90,7 @@ local function initUILayer()
 
     uiLayer:setPositionZ(-cc.Director:getInstance():getZEye()/4)
     uiLayer:setScale(0.25)
-    uiLayer:ignoreAnchorPointForPosition(false)
+    uiLayer:setIgnoreAnchorPointForPosition(false)
     uiLayer:setGlobalZOrder(3000)
 end
 

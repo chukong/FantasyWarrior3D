@@ -125,7 +125,7 @@ function BattlefieldUI:angrybarInit()
     local fullAngerStarOffset=70
     local yellow = cc.c3b(255,255,0)
     local grey = cc.c3b(113,103,76)
-    local action = cc.RepeatForever:create(cc.RotateBy:create(1,cc.V3(0,0,360)))
+    local action = cc.RepeatForever:create(cc.RotateBy:create(1,0,360))
 
     self.KnightAngry = cc.ProgressTimer:create(cc.Sprite:createWithSpriteFrameName("UI-1136-640_36_clone.png"))
     self.KnightAngry:setColor(yellow)
@@ -387,7 +387,7 @@ function BattlefieldUI:showVictoryUI()
 
     --color layer
     local layer = cc.LayerColor:create(cc.c4b(10,10,10,150))
-    layer:ignoreAnchorPointForPosition(false)
+    layer:setIgnoreAnchorPointForPosition(false)
     layer:setPosition3D(cc.V3(G.winSize.width*0.5,G.winSize.height*0.5,0))
     --add victory
     local victory = cc.Sprite:createWithSpriteFrameName("victory.png")

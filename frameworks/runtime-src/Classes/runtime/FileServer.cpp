@@ -40,6 +40,8 @@ USING_NS_CC;
 
 #define PROTO_START "RuntimeSend:"
 
+#define BUFFER_SIZE 1024
+
 FileServer* FileServer::s_sharedFileServer = nullptr;
 FileServer* FileServer::getShareInstance()
 {
@@ -61,7 +63,8 @@ void FileServer::readResFileFinfo()
     FILE * pFile = fopen (filecfg.c_str() , "r");
     if(pFile)
     {
-        rapidjson::FileStream inputStream(pFile);
+        char buffer[BUFFER_SIZE];
+        rapidjson::FileReadStream inputStream(pFile, buffer, BUFFER_SIZE);
         _filecfgjson.ParseStream<0>(inputStream);
         fclose(pFile);
     }

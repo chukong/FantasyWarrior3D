@@ -1,6 +1,7 @@
 
 #include "json/document.h"
-#include "json/filestream.h"
+#include "json/filereadstream.h"
+#include "json/filewritestream.h"
 #include "json/stringbuffer.h"
 #include "json/writer.h"
 #include "ConfigParser.h"

@@ -32,6 +32,10 @@
 //  Based on original Protocol Buffers design by
 //  Sanjay Ghemawat, Jeff Dean, and others.
 
+#ifdef _MSC_VER
+#include <algorithm>
+#endif
+
 #include <google/protobuf/io/zero_copy_stream_impl_lite.h>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/stubs/stl_util.h>
@@ -63,7 +67,11 @@ ArrayInputStream::~ArrayInputStream() {
 
 bool ArrayInputStream::Next(const void** data, int* size) {
   if (position_ < size_) {
+#ifdef _MSC_VER
+    last_returned_size_ = std::min(block_size_, size_ - position_);
+#else
     last_returned_size_ = min(block_size_, size_ - position_);
+#endif
     *data = data_ + position_;
     *size = last_returned_size_;
     position_ += last_returned_size_;
@@ -116,7 +124,11 @@ ArrayOutputStream::~ArrayOutputStream() {
 
 bool ArrayOutputStream::Next(void** data, int* size) {
   if (position_ < size_) {
+#ifdef _MSC_VER
+    last_returned_size_ = std::min(block_size_, size_ - position_);
+#else
     last_returned_size_ = min(block_size_, size_ - position_);
+#endif
     *data = data_ + position_;
     *size = last_returned_size_;
     position_ += last_returned_size_;

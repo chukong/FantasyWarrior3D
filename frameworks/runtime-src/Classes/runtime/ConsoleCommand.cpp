@@ -26,7 +26,8 @@ THE SOFTWARE.
 #include "ConfigParser.h"
 #include "ConsoleCommand.h"
 #include "json/document.h"
-#include "json/filestream.h"
+#include "json/filereadstream.h"
+#include "json/filewritestream.h"
 #include "json/stringbuffer.h"
 #include "CCLuaEngine.h"
 
